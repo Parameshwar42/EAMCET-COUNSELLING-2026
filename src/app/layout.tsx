@@ -33,7 +33,7 @@ export default function RootLayout({
         
         {/* Adsterra Popunder Script */}
         <Script 
-          src="https://pl29735767.effectivecpmnetwork.com/04/4f/b5/044fb514e5a5998ec2ef52f2ce0be7d.js"
+          src="https://pl29735767.effectivecpmnetwork.com/04/4f/b5/044fb5b14e5a5998ec2ef52f2ce0be7d.js"
           strategy="afterInteractive"
         />
         
