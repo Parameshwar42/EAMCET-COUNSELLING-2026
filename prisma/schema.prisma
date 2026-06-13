@@ -1,0 +1,57 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model College {
+  id          String   @id @default(uuid())
+  code        String   @unique
+  name        String
+  place       String
+  district    String
+  coEducation String   // COED, GIRLS
+  type        String   // PVT, GOV, SF
+  affiliation String   // JNTUH, OU, etc.
+  cutoffs     Cutoff[]
+}
+
+model Branch {
+  id      String   @id @default(uuid())
+  code    String   @unique // CSE, CSM, ECE, EEE, MEC, CIV, CSD, CSO, INF, AIM, BME, CHE, PHE, etc.
+  name    String
+  cutoffs Cutoff[]
+}
+
+model Phase {
+  id      String   @id @default(uuid())
+  code    String   @unique // PHASE_1, PHASE_2, FINAL
+  name    String
+  cutoffs Cutoff[]
+}
+
+model Cutoff {
+  id         String   @id @default(uuid())
+  collegeId  String
+  branchId   String
+  phaseId    String
+  category   String   // OC, BC_A, BC_B, BC_C, BC_D, BC_E, SC_I, SC_II, SC_III, ST, EWS
+  gender     String   // BOYS, GIRLS
+  rank       Int
+  college    College  @relation(fields: [collegeId], references: [id])
+  branch     Branch   @relation(fields: [branchId], references: [id])
+  phase      Phase    @relation(fields: [phaseId], references: [id])
+}
+
+model Lead {
+  id         String   @id @default(uuid())
+  name       String
+  mobile     String
+  rank       Int
+  category   String
+  gender     String
+  capturedAt DateTime @default(now())
+}
