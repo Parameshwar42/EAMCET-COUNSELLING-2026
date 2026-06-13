@@ -224,7 +224,8 @@ export default function CutoffsClient({ colleges, branches, cutoffs }: CutoffsCl
                   No allotment cutoff records found for the selected category.
                 </div>
               ) : (
-                <div className="overflow-x-auto">
+                <>
+                  <div className="hidden md:block overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
                       <tr className="bg-slate-50/75 border-b border-slate-100 text-xxs font-bold text-slate-500 uppercase tracking-wider">
@@ -276,7 +277,49 @@ export default function CutoffsClient({ colleges, branches, cutoffs }: CutoffsCl
                     </tbody>
                   </table>
                 </div>
-              )}
+
+                {/* Mobile Card List View */}
+                <div className="block md:hidden space-y-3">
+                  {branchDetails.map((br) => (
+                    <div key={br.code} className="rounded-xl border border-slate-150 bg-white p-4.5 shadow-sm space-y-3">
+                      <div>
+                        <div className="text-xs font-bold text-slate-800 uppercase tracking-tight">{br.code}</div>
+                        <div className="text-xxs text-slate-450 mt-0.5 leading-normal uppercase">{br.name}</div>
+                      </div>
+                      
+                      <div className="grid grid-cols-3 gap-2 border-t border-slate-100 pt-2.5 text-center">
+                        <div className="space-y-0.5">
+                          <span className="block text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                            1st Phase
+                          </span>
+                          <span className="block text-xs font-bold text-slate-700">
+                            {br.phase1 ? br.phase1.toLocaleString() : "—"}
+                          </span>
+                        </div>
+                        
+                        <div className="space-y-0.5">
+                          <span className="block text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                            2nd Phase
+                          </span>
+                          <span className="block text-xs font-bold text-slate-700">
+                            {br.phase2 ? br.phase2.toLocaleString() : "—"}
+                          </span>
+                        </div>
+
+                        <div className="space-y-0.5">
+                          <span className="block text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                            Final Phase
+                          </span>
+                          <span className="block text-xs font-black text-indigo-955">
+                            {br.final ? br.final.toLocaleString() : "—"}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
             </div>
 
             <div className="flex items-center gap-2 rounded-xl border border-slate-200 bg-amber-50/20 p-4 text-xxs text-slate-500 leading-relaxed">

@@ -218,7 +218,8 @@ export default function TopCseClient({ colleges, branches, cutoffs }: TopCseClie
               No colleges found matching the filters or search term.
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <>
+              <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50/75 border-b border-slate-100 text-xxs font-bold text-slate-500 uppercase tracking-wider">
@@ -320,7 +321,84 @@ export default function TopCseClient({ colleges, branches, cutoffs }: TopCseClie
                 </tbody>
               </table>
             </div>
-          )}
+
+            {/* Mobile Card List View */}
+            <div className="block md:hidden space-y-4">
+              {filteredColleges.map((col, index) => (
+                <div key={col.code} className="rounded-xl border border-slate-150 bg-white p-4.5 shadow-sm space-y-3.5">
+                  {/* Card Header: Rank Badge & College Code */}
+                  <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2">
+                    <span className="flex h-5.5 w-5.5 items-center justify-center rounded-lg bg-indigo-50 text-[10px] font-black text-indigo-700">
+                      #{index + 1}
+                    </span>
+                    <span className="text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-100/30 px-2 py-0.5 rounded-lg">
+                      {col.code}
+                    </span>
+                  </div>
+
+                  {/* College Name & Details */}
+                  <div className="space-y-1">
+                    <h4 className="text-xs font-black text-slate-800 leading-snug uppercase">
+                      {col.name}
+                    </h4>
+                    <div className="flex flex-wrap items-center gap-1.5 text-xxs font-semibold text-slate-450">
+                      <span className="bg-slate-100 px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                        <MapPin className="h-3 w-3" />
+                        {col.place}, {col.district}
+                      </span>
+                      <span>•</span>
+                      <span>Affiliation: {col.affiliation}</span>
+                      <span>•</span>
+                      <span>Type: {col.type}</span>
+                    </div>
+                  </div>
+
+                  {/* Cutoff Grid */}
+                  <div className="grid grid-cols-3 gap-2 border-t border-slate-100 pt-2.5 text-center">
+                    <div className="space-y-0.5">
+                      <span className="block text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                        CSE Cutoff
+                      </span>
+                      <span className="block text-xs font-black text-indigo-950">
+                        {col.cseCutoff ? col.cseCutoff.toLocaleString() : "—"}
+                      </span>
+                    </div>
+
+                    <div className="space-y-0.5">
+                      <span className="block text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                        AI/ML Cutoff
+                      </span>
+                      <span className="block text-xs font-bold text-slate-700">
+                        {col.csmCutoff ? col.csmCutoff.toLocaleString() : "—"}
+                      </span>
+                    </div>
+
+                    <div className="space-y-0.5">
+                      <span className="block text-[8px] font-bold text-slate-400 uppercase tracking-wider">
+                        Data Sci
+                      </span>
+                      <span className="block text-xs font-bold text-slate-700">
+                        {col.csdCutoff ? col.csdCutoff.toLocaleString() : "—"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Simulate Choice Link */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between">
+                    <span className="text-[10px] text-slate-400 font-semibold">{col.coEducation}</span>
+                    <Link
+                      href={`/predictor?college=${col.code}`}
+                      className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xxs font-bold text-slate-700 hover:text-indigo-650 transition-colors shadow-sm cursor-pointer"
+                    >
+                      <span>Simulate</span>
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
         </div>
 
         {/* CTA Card */}

@@ -197,39 +197,39 @@ export default function OptionBuilder() {
             {options.map((item, index) => (
               <div 
                 key={item.id} 
-                className="flex items-center justify-between gap-4 rounded-xl border border-slate-100 bg-white p-4 shadow-sm hover:shadow-md transition-shadow"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-slate-100 bg-white p-4.5 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="flex items-center gap-4">
+                <div className="flex items-start gap-3 w-full sm:w-auto">
                   {/* Priority Order Badge */}
-                  <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-indigo-50 text-xs font-bold text-indigo-700">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-50 text-xs font-bold text-indigo-700">
                     {index + 1}
                   </span>
                   
-                  <div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-indigo-600 bg-indigo-50/30 border border-indigo-100/50 px-1.5 py-0.5 rounded">
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-center gap-1.5">
+                      <span className="text-xxs font-bold text-indigo-600 bg-indigo-50/30 border border-indigo-100/50 px-1.5 py-0.5 rounded uppercase">
                         {item.collegeCode}
                       </span>
-                      <span className="text-xs font-bold text-slate-600 bg-slate-100 px-1.5 py-0.5 rounded">
+                      <span className="text-xxs font-bold text-slate-605 bg-slate-100 px-1.5 py-0.5 rounded uppercase">
                         {item.branchCode}
                       </span>
-                      <span className="text-xxs font-medium text-slate-400">
+                      <span className="text-xxs font-medium text-slate-400 truncate">
                         {item.place}, {item.district}
                       </span>
                     </div>
-                    <h4 className="mt-1.5 text-sm font-semibold text-slate-800 leading-tight">
+                    <h4 className="mt-1.5 text-xs font-black text-slate-800 leading-snug break-words uppercase">
                       {item.collegeName}
                     </h4>
-                    <p className="text-xxs text-slate-400 mt-0.5">{item.branchName}</p>
+                    <p className="text-xxs text-slate-400 mt-0.5 leading-tight uppercase">{item.branchName}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center justify-end gap-1.5 w-full sm:w-auto pt-2.5 sm:pt-0 border-t border-slate-100 sm:border-t-0 shrink-0">
                   {/* Up button */}
                   <button 
                     onClick={() => moveUp(index)}
                     disabled={index === 0}
-                    className={`flex h-8 w-8 items-center justify-center rounded-lg border border-slate-100 bg-slate-50/50 text-slate-500 hover:bg-slate-100 hover:text-indigo-600 transition-all ${
+                    className={`flex h-8 w-8 items-center justify-center rounded-xl border border-slate-100 bg-slate-50/50 text-slate-550 hover:bg-slate-100 hover:text-indigo-600 transition-all ${
                       index === 0 ? "opacity-30 cursor-not-allowed" : "cursor-pointer"
                     }`}
                   >
@@ -240,7 +240,7 @@ export default function OptionBuilder() {
                   <button 
                     onClick={() => moveDown(index)}
                     disabled={index === options.length - 1}
-                    className={`flex h-8 w-8 items-center justify-center rounded-lg border border-slate-100 bg-slate-50/50 text-slate-500 hover:bg-slate-100 hover:text-indigo-600 transition-all ${
+                    className={`flex h-8 w-8 items-center justify-center rounded-xl border border-slate-100 bg-slate-50/50 text-slate-550 hover:bg-slate-100 hover:text-indigo-600 transition-all ${
                       index === options.length - 1 ? "opacity-30 cursor-not-allowed" : "cursor-pointer"
                     }`}
                   >
@@ -250,13 +250,14 @@ export default function OptionBuilder() {
                   {/* Delete button */}
                   <button 
                     onClick={() => deleteItem(item.id)}
-                    className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-100 bg-slate-50/50 text-slate-400 hover:bg-red-50 hover:text-red-600 hover:border-red-100 transition-all cursor-pointer"
+                    className="flex h-8 w-8 items-center justify-center rounded-xl border border-slate-100 bg-slate-50/50 text-slate-400 hover:bg-red-50 hover:text-red-650 hover:border-red-100 transition-all cursor-pointer"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
                 </div>
               </div>
             ))}
+
           </div>
         </div>
       )}

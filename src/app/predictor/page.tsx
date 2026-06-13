@@ -300,8 +300,8 @@ export default function PredictorPage() {
                 </div>
               </div>
 
-              {/* Table */}
-              <div className="rounded-2xl border border-slate-200/80 bg-white/80 backdrop-blur shadow-lg overflow-hidden">
+              {/* Desktop Table View */}
+              <div className="hidden md:block rounded-2xl border border-slate-200/80 bg-white/80 backdrop-blur shadow-lg overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left border-collapse">
                     <thead>
@@ -393,7 +393,7 @@ export default function PredictorPage() {
                                         </>
                                       ) : (
                                         <>
-                                          <Plus className="h-3 w-3 text-slate-500" />
+                                          <Plus className="h-3 w-3 text-slate-505" />
                                           <span>Add</span>
                                         </>
                                       )}
@@ -434,6 +434,123 @@ export default function PredictorPage() {
                   </table>
                 </div>
               </div>
+
+              {/* Mobile Card List View */}
+              <div className="block md:hidden space-y-4">
+                {getUnifiedList().length === 0 ? (
+                  <div className="rounded-2xl border border-slate-200/80 bg-white p-12 text-center text-slate-400 italic shadow-sm">
+                    No matching colleges found. Try adjusting your rank, category, or branch filters.
+                  </div>
+                ) : (
+                  (() => {
+                    const list = getUnifiedList();
+                    const startIndex = (currentPage - 1) * entriesPerPage;
+                    const endIndex = startIndex + entriesPerPage;
+                    const paginatedList = list.slice(startIndex, endIndex);
+
+                    return paginatedList.map((item: any, paginatedIndex: number) => {
+                      const optionId = `${item.collegeCode}-${item.branchCode}`;
+                      const isAdded = savedOptionIds.includes(optionId);
+                      const actualIndex = startIndex + paginatedIndex;
+
+                      return (
+                        <React.Fragment key={`${item.id}-${item.phase}-mobile`}>
+                          <div className="rounded-2xl border border-slate-200 bg-white p-4.5 shadow-md space-y-3.5">
+                            {/* Card Header: College Code Badge & Seat Category */}
+                            <div className="flex items-center justify-between gap-2 border-b border-slate-100 pb-2">
+                              <Link
+                                href={`/tgeapcet-cutoffs?college=${item.collegeCode}`}
+                                className="inline-flex items-center gap-1 text-[10px] font-extrabold text-indigo-650 hover:underline border border-indigo-100 bg-indigo-50/40 px-2 py-0.5 rounded-lg"
+                              >
+                                🏫 {item.collegeCode}
+                              </Link>
+                              
+                              <span className="inline-flex items-center rounded-md border border-emerald-150 bg-emerald-50/50 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-emerald-800">
+                                {studentProfile.category}_{studentProfile.gender === "BOYS" ? "GEN" : "GIRLS"}_{studentProfile.region || "OU"}
+                              </span>
+                            </div>
+
+                            {/* College & Branch Names */}
+                            <div className="space-y-1">
+                              <h4 className="text-xs font-black text-slate-900 uppercase tracking-tight leading-snug break-words">
+                                {item.collegeName}
+                              </h4>
+                              <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                                <span className="text-[9px] font-bold text-slate-700 bg-slate-100 px-1.5 py-0.5 rounded uppercase shrink-0">
+                                  {item.branchCode}
+                                </span>
+                                <span className="text-[10px] font-semibold text-slate-500 uppercase leading-none">
+                                  {item.branchName}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Cutoff & Actions Row */}
+                            <div className="flex items-center justify-between gap-4 pt-3 border-t border-slate-100">
+                              <div>
+                                <span className="block text-[9px] font-bold text-slate-400 uppercase tracking-wider">
+                                  2025 Cutoff Rank
+                                </span>
+                                <div className="flex items-baseline gap-1 mt-0.5">
+                                  <span className="text-sm font-black text-slate-800">
+                                    {item.cutoffRank.toLocaleString()}
+                                  </span>
+                                  <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider">
+                                    ({item.phase})
+                                  </span>
+                                </div>
+                              </div>
+
+                              <button
+                                onClick={() => addToOptions(item)}
+                                className={`inline-flex items-center gap-1 px-3.5 py-1.5 rounded-xl text-xxs font-bold shadow-sm transition-all border cursor-pointer ${
+                                  isAdded
+                                    ? "border-emerald-250 bg-emerald-50 text-emerald-700 shadow-emerald-50"
+                                    : "border-slate-200 bg-white hover:bg-slate-50 text-slate-700 hover:border-slate-300"
+                                }`}
+                              >
+                                {isAdded ? (
+                                  <>
+                                    <Check className="h-3 w-3 text-emerald-600" />
+                                    <span>Added</span>
+                                  </>
+                                ) : (
+                                  <>
+                                    <Plus className="h-3 w-3 text-slate-500" />
+                                    <span>Add Choice</span>
+                                  </>
+                                )}
+                              </button>
+                            </div>
+                          </div>
+
+                          {/* In-middle discover banner */}
+                          {actualIndex === 9 && list.length > 10 && (
+                            <div className="border border-dashed border-slate-200 bg-white/80 backdrop-blur rounded-2xl p-4 shadow-sm space-y-3">
+                              <div className="flex items-center gap-2">
+                                <span className="h-2 w-2 rounded-full bg-indigo-650 animate-pulse" />
+                                <span className="text-xxs font-bold text-slate-500 uppercase tracking-wider">Discover more</span>
+                              </div>
+                              <div className="flex flex-col gap-2">
+                                <Link href="/predictor" className="w-full text-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
+                                  🌐 College Predictor Tool
+                                </Link>
+                                <Link href="/counselling-guide" className="w-full text-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
+                                  📑 EAPCET Counselling Services
+                                </Link>
+                                <a href="https://tgeapcet.nic.in" target="_blank" rel="noopener noreferrer" className="w-full text-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
+                                  📅 EAMCET Exam Schedule
+                                </a>
+                              </div>
+                            </div>
+                          )}
+                        </React.Fragment>
+                      );
+                    });
+                  })()
+                )}
+              </div>
+
 
               {/* Pagination controls */}
               {getUnifiedList().length > entriesPerPage && (
