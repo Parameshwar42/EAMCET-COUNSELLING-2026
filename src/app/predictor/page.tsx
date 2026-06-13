@@ -506,6 +506,11 @@ export default function PredictorPage() {
               )}
             </div>
           )}
+
+          {/* Adsterra Native Banner Ads */}
+          <div className="w-full mt-8">
+            <AdBanner format="native" />
+          </div>
         </div>
       </main>
     </div>
