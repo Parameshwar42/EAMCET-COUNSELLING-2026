@@ -41,7 +41,7 @@ export default function AdBanner({ adKey, format }: AdBannerProps) {
         className="bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden shadow-inner"
       >
         <iframe
-          src={`/ad-loader.html?key=${adKey}&width=${dimensions.width}&height=${dimensions.height}`}
+          src={`/ad-${format}.html`}
           width={dimensions.width}
           height={dimensions.height}
           frameBorder="0"
