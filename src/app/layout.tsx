@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,22 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        
+        {/* Adsterra Popunder Script */}
+        <Script 
+          src="https://pl29735767.effectivecpmnetwork.com/04/4f/b5/044fb514e5a5998ec2ef52f2ce0be7d.js"
+          strategy="afterInteractive"
+        />
+        
+        {/* Adsterra Social Bar Script */}
+        <Script 
+          src="https://pl29735765.effectivecpmnetwork.com/d6/c3/1c/d6c31c0bfd596d69aa44b4261b41e612.js"
+          strategy="lazyOnload"
+        />
+      </body>
     </html>
   );
 }
+

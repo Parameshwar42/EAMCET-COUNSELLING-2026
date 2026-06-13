@@ -6,6 +6,7 @@ import Header from "@/components/Header";
 import PredictorForm from "@/components/PredictorForm";
 import { Sparkles, Flame, Target, ShieldCheck, Check, Plus, AlertCircle, ChevronLeft, ChevronRight, Info, MapPin } from "lucide-react";
 import { OptionItem } from "@/components/OptionBuilder";
+import AdBanner from "@/components/AdBanner";
 
 export default function PredictorPage() {
   const [results, setResults] = useState<{ dream: any[]; target: any[]; safe: any[] } | null>(null);
@@ -224,6 +225,7 @@ export default function PredictorPage() {
           {/* Prediction results */}
           {results && studentProfile && (
             <div className="space-y-6">
+              <AdBanner adKey="ab6043d59e55ac1704ad3eb038401295" format="728x90" />
               {/* Title Section */}
               <div className="border-b border-slate-200 pb-4">
                 <h2 className="text-2xl font-bold text-slate-800">
