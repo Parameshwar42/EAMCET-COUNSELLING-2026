@@ -132,6 +132,11 @@ export default function PredictorPage() {
                   <span>36+ Top Colleges</span>
                 </div>
               </div>
+
+              {/* Sidebar Adsterra Banner */}
+              <div className="hidden lg:block pt-4 border-t border-slate-200/60">
+                <AdBanner adKey="5fd3a5bb2538ead9136bd4788fc0eb" format="300x250" />
+              </div>
             </div>
 
             {/* Right Column: Expanded Form Box */}

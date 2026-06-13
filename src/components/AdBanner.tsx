@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 
 interface AdBannerProps {
   adKey: string;
-  format: "300x250" | "728x90" | "468x60" | "160x600";
+  format: "300x250" | "728x90" | "468x60" | "160x600" | "320x50";
 }
 
 export default function AdBanner({ adKey, format }: AdBannerProps) {
@@ -16,6 +16,8 @@ export default function AdBanner({ adKey, format }: AdBannerProps) {
         return { width: 728, height: 90 };
       case "468x60":
         return { width: 468, height: 60 };
+      case "320x50":
+        return { width: 320, height: 50 };
       case "160x600":
         return { width: 160, height: 600 };
       case "300x250":
