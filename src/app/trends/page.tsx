@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "@/components/Header";
 import TrendCharts from "@/components/TrendCharts";
+import AdBanner from "@/components/AdBanner";
 
 export default function TrendsPage() {
   return (
@@ -18,6 +19,9 @@ export default function TrendsPage() {
               Understand counseling allotment trends. Monitor how cutoffs shift between the 1st Phase, 2nd Phase, and Final Phase, and track popular branches in Hyderabad colleges.
             </p>
           </div>
+
+          {/* Adsterra 468x60 Banner */}
+          <AdBanner format="468x60" />
 
           <TrendCharts />
         </div>
