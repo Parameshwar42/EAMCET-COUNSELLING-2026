@@ -29,7 +29,9 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased overflow-x-hidden`}
     >
       <body className="min-h-full flex flex-col overflow-x-hidden">
-        {children}
+        <div className="flex-1 flex flex-col w-full overflow-x-hidden">
+          {children}
+        </div>
         
         {/* Adsterra Popunder Script */}
         <Script 
