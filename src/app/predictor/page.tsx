@@ -135,7 +135,7 @@ export default function PredictorPage() {
 
               {/* Sidebar Adsterra Banner */}
               <div className="hidden lg:block pt-4 border-t border-slate-200/60">
-                <AdBanner adKey="5fd3a5bb2538ead9136bd4788fc0eb" format="300x250" />
+                <AdBanner adKey="5fd3a5bbd2538ead9d136bd4788fc0eb" format="300x250" />
               </div>
             </div>
 
