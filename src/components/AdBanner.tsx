@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 interface AdBannerProps {
   adKey: string;
@@ -8,8 +8,6 @@ interface AdBannerProps {
 }
 
 export default function AdBanner({ adKey, format }: AdBannerProps) {
-  const adRef = useRef<HTMLDivElement>(null);
-
   const getDimensions = () => {
     switch (format) {
       case "728x90":
@@ -28,44 +26,6 @@ export default function AdBanner({ adKey, format }: AdBannerProps) {
     }
   };
 
-  useEffect(() => {
-    // Only run on client-side
-    if (typeof window === "undefined" || !adRef.current) return;
-
-    const dimensions = getDimensions();
-    
-    // Clear any previous ad script if already present
-    adRef.current.innerHTML = "";
-
-    const containerId = `at-container-${adKey}`;
-    const innerContainer = document.createElement("div");
-    innerContainer.id = containerId;
-    adRef.current.appendChild(innerContainer);
-
-    // 1. Create configuration script
-    const configScript = document.createElement("script");
-    configScript.type = "text/javascript";
-    configScript.innerHTML = `
-      atOptions = {
-        'key' : '${adKey}',
-        'format' : 'iframe',
-        'height' : ${dimensions.height},
-        'width' : ${dimensions.width},
-        'params' : {}
-      };
-    `;
-
-    // 2. Create invocation script
-    const invokeScript = document.createElement("script");
-    invokeScript.type = "text/javascript";
-    invokeScript.src = `//www.highperformanceformat.com/${adKey}/invoke.js`;
-
-    // Append to inner container
-    innerContainer.appendChild(configScript);
-    innerContainer.appendChild(invokeScript);
-
-  }, [adKey, format]);
-
   const dimensions = getDimensions();
 
   return (
@@ -74,13 +34,22 @@ export default function AdBanner({ adKey, format }: AdBannerProps) {
         Advertisement
       </span>
       <div 
-        ref={adRef} 
         style={{ 
           minWidth: `${dimensions.width}px`, 
           minHeight: `${dimensions.height}px` 
         }} 
-        className="bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden shadow-inner animate-pulse-slow"
-      />
+        className="bg-slate-50 border border-slate-100 rounded-xl flex items-center justify-center overflow-hidden shadow-inner"
+      >
+        <iframe
+          src={`/ad-loader.html?key=${adKey}&width=${dimensions.width}&height=${dimensions.height}`}
+          width={dimensions.width}
+          height={dimensions.height}
+          frameBorder="0"
+          scrolling="no"
+          className="overflow-hidden border-0"
+        />
+      </div>
     </div>
   );
 }
+
