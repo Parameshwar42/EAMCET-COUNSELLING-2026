@@ -22,6 +22,7 @@ import {
   History,
   AlertCircle
 } from "lucide-react";
+import AdBanner from "@/components/AdBanner";
 
 interface CollegeData {
   college_code: string;
@@ -197,9 +198,12 @@ export default function TopCollegesPage() {
 
       <main className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
         
+        {/* Top Colleges Page Leaderboard Ad */}
+        <AdBanner adKey="ab6043d59e55ac1704ad3eb038401295" format="728x90" />
+        
         {/* Info Alert Box */}
         <div className="mb-8 rounded-2xl border border-blue-100 bg-blue-50/80 p-4.5 text-sm text-blue-800 flex items-center justify-between gap-4 shadow-sm shadow-blue-50">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-blue-100 text-blue-600">
               <Info className="h-5 w-5" />
             </div>

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Sparkles, ArrowRight, ShieldCheck, ListOrdered, TrendingUp, Cpu, Flame, Users, Calendar } from "lucide-react";
 import Header from "@/components/Header";
+import AdBanner from "@/components/AdBanner";
 
 export default function Home() {
   return (
@@ -59,6 +60,9 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {/* Adsterra Leaderboard */}
+        <AdBanner adKey="ab6043d59e55ac1704ad3eb038401295" format="728x90" />
 
         {/* Feature Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
