@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,8 @@ export default function RootLayout({
           src="https://pl29735765.effectivecpmnetwork.com/d6/c3/1c/d6c31c0bfd596d69aa44b4261b41e612.js"
           strategy="lazyOnload"
         />
+        
+        <Analytics />
       </body>
     </html>
   );
