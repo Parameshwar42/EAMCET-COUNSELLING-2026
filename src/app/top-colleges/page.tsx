@@ -404,7 +404,12 @@ export default function TopCollegesPage() {
                   {/* View Details Button (Right) */}
                   <div className="shrink-0 flex items-center justify-center w-full sm:w-auto pt-3 sm:pt-0 border-t sm:border-t-0 border-slate-200/50">
                     <button
-                      onClick={() => setActiveCollege(college)}
+                      onClick={() => {
+                        setActiveCollege(college);
+                        if (typeof window !== "undefined") {
+                          window.open("https://www.effectivecpmnetwork.com/ssqss5zs4?key=303814b591c29e0aa8349d9619b2f4c5", "_blank");
+                        }
+                      }}
                       className="w-full sm:w-auto flex items-center justify-center gap-1 rounded-xl bg-indigo-600 px-5 py-3 text-xs font-extrabold text-white shadow-md shadow-indigo-100 hover:bg-indigo-500 hover:shadow-indigo-200 hover:-translate-y-0.5 transition-all cursor-pointer whitespace-nowrap"
                     >
                       <span>View More</span>
