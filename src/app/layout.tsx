@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col overflow-x-hidden">
         <div className="flex-1 flex flex-col w-full overflow-x-hidden">
           {children}
+          <Analytics />
         </div>
         
         {/* Adsterra Popunder Script */}
