@@ -413,30 +413,6 @@ export default function PredictorPage() {
                                   </td>
                                 </tr>
 
-                                {/* In-middle discover banner */}
-                                {actualIndex === 9 && list.length > 10 && (
-                                  <tr className="bg-slate-50/30 hover:bg-slate-50/30">
-                                    <td colSpan={5} className="px-6 py-4 border-y border-slate-100">
-                                      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 border border-dashed border-slate-200 bg-white/80 backdrop-blur rounded-2xl p-4 shadow-sm">
-                                        <div className="flex items-center gap-2 shrink-0">
-                                          <span className="h-2 w-2 rounded-full bg-indigo-650 animate-pulse" />
-                                          <span className="text-xxs font-bold text-slate-500 uppercase tracking-wider">Discover more</span>
-                                        </div>
-                                        <div className="flex flex-wrap gap-2.5">
-                                          <Link href="/predictor" className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
-                                            🌐 College Predictor Tool
-                                          </Link>
-                                          <Link href="/counselling-guide" className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
-                                            📑 EAPCET Counselling Services
-                                          </Link>
-                                          <a href="https://tgeapcet.nic.in" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
-                                            📅 EAMCET Exam Schedule
-                                          </a>
-                                        </div>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                )}
                               </React.Fragment>
                             );
                           });
@@ -536,26 +512,6 @@ export default function PredictorPage() {
                             </div>
                           </div>
 
-                          {/* In-middle discover banner */}
-                          {actualIndex === 9 && list.length > 10 && (
-                            <div className="border border-dashed border-slate-200 bg-white/80 backdrop-blur rounded-2xl p-4 shadow-sm space-y-3">
-                              <div className="flex items-center gap-2">
-                                <span className="h-2 w-2 rounded-full bg-indigo-650 animate-pulse" />
-                                <span className="text-xxs font-bold text-slate-500 uppercase tracking-wider">Discover more</span>
-                              </div>
-                              <div className="flex flex-col gap-2">
-                                <Link href="/predictor" className="w-full text-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
-                                  🌐 College Predictor Tool
-                                </Link>
-                                <Link href="/counselling-guide" className="w-full text-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
-                                  📑 EAPCET Counselling Services
-                                </Link>
-                                <a href="https://tgeapcet.nic.in" target="_blank" rel="noopener noreferrer" className="w-full text-center rounded-xl border border-slate-200 bg-white hover:bg-slate-50 py-2 text-xxs font-bold text-slate-650 shadow-sm transition-colors cursor-pointer">
-                                  📅 EAMCET Exam Schedule
-                                </a>
-                              </div>
-                            </div>
-                          )}
                         </React.Fragment>
                       );
                     });
