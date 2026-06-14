@@ -27,6 +27,18 @@ export default function PredictorPage() {
     }
   }, []);
 
+  // Smooth scroll to results once loaded
+  useEffect(() => {
+    if (results) {
+      setTimeout(() => {
+        const element = document.getElementById("prediction-results-section");
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
+  }, [results]);
+
   const handleResults = (data: { dream: any[]; target: any[]; safe: any[] }, profile: any) => {
     setResults(data);
     setStudentProfile(profile);
@@ -229,7 +241,7 @@ export default function PredictorPage() {
 
           {/* Prediction results */}
           {results && studentProfile && (
-            <div className="space-y-6">
+            <div id="prediction-results-section" className="space-y-6 scroll-mt-20">
               <AdBanner adKey="ab6043d59e55ac1704ad3eb038401295" format="728x90" />
               {/* Title Section */}
               <div className="border-b border-slate-200 pb-4">
